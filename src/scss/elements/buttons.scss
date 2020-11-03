@@ -1,0 +1,126 @@
+.btn {
+  cursor: pointer;
+  font-family: $font-family-primary;
+  display: block;
+  position: relative;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 100%;
+
+  &--basic {
+    padding: 19px 36px 18px 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    line-height: 100%;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-txt-lighter;
+    box-shadow: 0 4px 15px 0 rgba(7, 42, 68, 0.1);
+    &:hover {
+      color: $color-txt-dark;
+      background-color: $color-secondary;
+    }
+  }
+  &--secondary {
+    background-color: $color-lighter;
+    color: $color-txt-dark;
+    box-shadow: 0 4px 15px 0 rgba(7, 42, 68, 0.1);
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-txt-lighter;
+    }
+  }
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    line-height: 100%;
+
+    &--primary{
+      color: $color-txt-dark;
+      &:hover {
+        color: $color-txt-light;
+      }
+    }
+    &--secondary{
+      color: $color-lighter;
+      &:hover {
+        color: $color-txt-light;
+      }
+    }
+  }
+
+  &--round {
+    border-radius: 10px;
+  }
+
+  &--txt-light {
+    color: $color-txt-lighter;
+  }
+
+  &--txt-dark {
+  }
+
+  &--icon-right {
+    padding-right: 30px;
+  }
+
+  &--icon-left {
+  }
+
+  &--double-icon {
+    padding-left: 30px;
+    padding-right: 30px;
+    .btn__icon {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      height: 12px;
+      width: 12px;
+
+      &--left {
+        left: 0;
+        top: calc(50% - 1px);
+        transform: translateY(-50%);
+      }
+
+      &--right {
+        right: 0;
+        top: calc(50% - 1px);
+        transform: translateY(-50%);
+      }
+    }
+  }
+
+  &--clipped {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 176px;
+    height: 66px;
+    background-image: url("/dist/assets/images/button-clipped.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    color: $color-txt-lighter;
+    &:hover {
+      background-image: url("/dist/assets/images/button-clipped-hover.svg");
+      color: $color-txt-darker;
+    }
+  }
+}

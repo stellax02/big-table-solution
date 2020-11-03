@@ -1,0 +1,30 @@
+// section
+
+.l-container--fluid{
+    position: relative;
+    margin: 0 auto;
+}
+
+// basic containers
+
+.l-container--lg{
+    position: relative;
+    width: 100%;
+    max-width: $container-lg;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.l-container--md{
+    position: relative;
+    width: 100%;
+    max-width: $container-md;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.l-container--sm{ 
+    position: relative;
+    width: 100%; 
+    max-width: $container-sm;
+}
