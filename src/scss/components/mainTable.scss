@@ -35,18 +35,73 @@
     margin: 25px auto 0 !important;
     background: transparent;
     border: none !important;
-    grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    grid-template-areas: "header  body" "header  body";
 
-    thead,
-    tbody,
-    tr {
-        display: contents;
+    @include media(md) {
+        grid-template-areas: "header  header" "body  body";
+    }
+
+
+    thead {
+        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+        margin: 0 0 15px;
+        grid-area: header;
+
+        tr {
+            background: rgba($color-bg-accents,.9);
+            @include rounded();
+
+            th {
+                position: sticky;
+                top: 0;
+                border: none !important;
+            }
+
+            th:last-child {
+                border: 0;
+            }
+        }
+    }
+
+    tbody {
+        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+        background: rgba($color-primary-light,.9) !important;
+        @include rounded();
+        grid-area: body;
+
+        tr {
+            background: transparent !important;
+
+            &.odd td,
+            &.even td {
+                border: none !important;
+
+                &.sorting_1 {
+                    background: rgba($color-bg-turquise-light,.6) !important;
+                }
+            }
+
+            &:hover {
+                td {
+                    background: rgba($color-bg-mint-light,.6) !important;
+                }
+            }
+        }
+    }
+
+    thead tr,
+    tbody tr {
+        display: grid;
+        width: 100%;
+        grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 
     th,
     td {
-        padding: 15px;
+        padding: 15px 20px !important;
+        font-size: 0.9em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -63,57 +118,5 @@
                 float: left;
             }
         }
-    }
-
-    thead tr {
-        background: $color-bg-accents;
-    }
-
-    thead th {
-        position: sticky;
-        top: 0;
-        border: none !important;
-    }
-
-    th:last-child {
-        border: 0;
-    }
-
-    tr {
-        @include rounded();
-
-        &.odd td {
-            background: rgba($color-primary-light,.9) !important;
-            border: none !important;
-
-            &.sorting_1 {
-                background: rgba($color-secondary-light,.9) !important;
-            }
-        }
-
-        &.even td {
-            background: rgba($color-primary-light,.9) !important;
-            border: none !important;
-
-            &.sorting_1 {
-                background: rgba($color-secondary-light,.9) !important;
-            }
-        }
-
-        &:hover {
-            td {
-                background: rgba($color-secondary-light,.9) !important;
-            }
-        }
-    }
-
-    td {
-        padding: 15px 20px !important;
-        font-size: 0.9em;
-        background: $color-primary-light;
-    }
-
-    tr:nth-child(even) td {
-        background: transparent;
     }
 }

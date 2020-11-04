@@ -11,4 +11,43 @@ $break-md: 960px;
 $break-lg: 1200px;
 
 //Last breakpoint for any kind of smaller devices or viewports
-$break-xl: 1600px;   
+$break-xl: 1600px;
+
+$breakpoints: ( 
+    xs: $break-xs, 
+    xs-max: ($break-xs) - 1px, 
+    sm: $break-sm, 
+    sm-max: ($break-sm) - 1px, 
+    md: $break-md, 
+    md-max: ($break-md) - 1px, 
+    lg: $break-lg, 
+    lg-max: ($break-lg) - 1px, 
+    xl: $break-xl
+);
+
+$media-queries: ( 
+    xs: '(min-width: #{breakpoint(xs)})', 
+    sm: '(min-width: #{breakpoint(sm)})', 
+    md: '(min-width: #{breakpoint(md)})', 
+    lg: '(min-width: #{breakpoint(lg)})', 
+    xl: '(min-width: #{breakpoint(xl)})',  
+    xs-max: '(max-width: #{breakpoint(xs-max)})', 
+    sm-max: '(max-width: #{breakpoint(sm-max)})', 
+    md-max: '(max-width: #{breakpoint(md-max)})', 
+    lg-max: '(max-width: #{breakpoint(lg-max)})'
+);
+
+/* --------------------------------
+    Media query mixin. Ignore error in this mixin.
+-------------------------------- */
+@mixin media($query) {
+    @media screen and #{inspect(map-get($media-queries, $query))} {
+        @content;
+    }
+}
+/* --------------------------------
+    Media query function.
+-------------------------------- */
+@function breakpoint($breakpoint) {
+    @return map-get($breakpoints, $breakpoint);
+}

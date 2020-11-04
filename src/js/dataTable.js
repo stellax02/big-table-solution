@@ -6,6 +6,7 @@ $('#dataFilter').DataTable({
     fixedHeader: {
         header: true
     },
+    "bSort": false,
     initComplete: function () {
         this.api().columns().every(function () {
             var column = this;
