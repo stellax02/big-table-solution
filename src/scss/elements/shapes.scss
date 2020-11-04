@@ -1,0 +1,38 @@
+.bg-square {
+    position: fixed;
+
+    &.big {
+        @include rounded-square(900px, 925px, $color-bg-mint);
+        left: -100px;
+        top: 50%;
+        transform: rotate(32deg);
+        z-index: -3;
+    }
+
+    &.medium {
+        @include rounded-square(200px, 225px, $color-bg-orange);
+        left: 20%;
+        top: 30%;
+        transform: rotate(32deg);
+        z-index: -2;
+    }
+
+    &.small {
+        @include rounded-square(100px, 110px, $color-bg-turquise);
+        left: 30%;
+        top: 60%;
+        transform: rotate(32deg);
+        z-index: -1;
+    }
+}
+
+.bg-circle {
+
+    &.big {
+        @include circle (200px, 200px, $color-bg-redorange);
+        position: fixed;
+        top: 10%;
+        left: 30%;
+        z-index: -2;
+    }
+}

@@ -6,6 +6,19 @@
     }
 }
 
+// Mixin for box shadow
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $color;
+        -moz-box-shadow: inset $top $left $blur $color;
+        box-shadow: inset $top $left $blur $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
+}
 
 // Mixin for css-triangles
 @mixin css-triangle($color, $direction, $size: 6px, $position: absolute, $round: false){
@@ -37,14 +50,75 @@
         margin-left: -$size;
     }
 }
+// Mixin for css background shapes
+@mixin rounded-square($width, $height, $color) {
+        width: $width;
+        height: $height;
+        background: $color;
+        border-radius: 50% /23%;
+    &:before {
+        content: '';
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        right: -5%;
+        left: -5%;
+        background: inherit;
+        border-radius: 15% / 50%;
+    }
+}
 
-
+@mixin circle ($width, $height, $background) {
+        width: $width;
+        height: $height;
+        background-color: $background;
+        border-radius: 50%;
+}
 // Mixin for placeholders
-
 @mixin input-placeholder {
     &.placeholder { @content; }
     &:-moz-placeholder { @content; }
     &::-moz-placeholder { @content; }
     &:-ms-input-placeholder { @content; }
     &::-webkit-input-placeholder { @content; }
+}
+
+// Mixin for text field
+@mixin text-field {
+    display: inline-block;
+    outline: none;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    @include rounded();
+    @include box-shadow(0, 1px, 2px, rgba(0, 0, 0, 0.2));
+}
+
+// Mixin for rounded borders
+@mixin rounded($radius: 0.5em) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+// Mixin for gradient
+@mixin gradient($from, $to) {
+    background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+    background: -moz-linear-gradient(top, $from, $to);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+// Mixin for box-shadow
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $color;
+        -moz-box-shadow: inset $top $left $blur $color;
+        box-shadow: inset $top $left $blur $color;
+    }
+    @else {
+        -webkit-box-shadow: $top $left $blur $color;
+        -moz-box-shadow: $top $left $blur $color;
+        box-shadow: $top $left $blur $color;
+    }
 }

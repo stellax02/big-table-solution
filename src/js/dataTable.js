@@ -1,21 +1,29 @@
-// Setup - add a text input to each footer cell
-$('#example thead tr').clone(true).appendTo('#example thead');
-$('#example thead tr:eq(1) th').each(function (i) {
-    var title = $(this).text();
-    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
-
-    $('input', this).on('keyup change', function () {
-        if (table.column(i).search() !== this.value) {
-            table
-                .column(i)
-                .search(this.value)
-                .draw();
-        }
-    });
-});
-
-var table = $('#example').DataTable({
+$('#dataFilter').DataTable({
     "ajax": "./data/company.txt",
-    orderCellsTop: true,
-    fixedHeader: true
-});
+    responsive: true,
+    "pageLength": 25,
+    "lengthMenu": [25, 50, 100],
+    fixedHeader: {
+        header: true
+    },
+    initComplete: function () {
+        this.api().columns().every(function () {
+            var column = this;
+
+            var select = $('<select id="formfilter" class="filterdropdown"><option value="">' + $(column.header()).text() + '</option></select>')
+                .appendTo($(column.header()).empty())
+                .on('change', function () {
+                    var val = $.fn.dataTable.util.escapeRegex(
+                        $(this).val()
+                    );
+                    column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                });
+
+            column.data().unique().sort().each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + '</option>')
+            });
+        });
+    }
+ });

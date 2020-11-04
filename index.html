@@ -5,48 +5,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Infobip filter</title>
-    <link href="/dist/app.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.7/css/fixedHeader.dataTables.min.css">
+    <link href="/dist/app.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="p-homepage">
 
-    <header></header>
+    <header class="c-header"></header>
 
-    <main>
-        <section></section>
+    <main class="p-homepage__content">
         <section>
-            <table id="example" class="display" style="width:100%">
+            <a href="https://www.infobip.com" class="c-logo">
+                <span>Infobip</span>
+            </a>
+            <table id="dataFilter" class="display c-mainTable" style="width:100%">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Extn.</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Company name</th>
+                        <th>Customer</th>
+                        <th>Fiscal year</th>
+                        <th>Doc. number</th>
+                        <th>Doc. type</th>
+                        <th>Doc. status</th>
+                        <th>Bank name</th>
+                        <th>Doc. period</th>
+                        <th>Amount</th>
+                        <th>Currency</th>
+                        <th>Due in</th>
+                        <th>Service</th>
+                        <th>Is Paid</th>
                     </tr>
-
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Extn.</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                    </tr>
-                </tfoot>
             </table>
         </section>
         <section></section>
     </main>
 
-    <footer></footer>
+    <footer class="p-homepage__content"></footer>
+
+    <div class="bg-square small"></div>
+    <div class="bg-square medium"></div>
+    <div class="bg-square big"></div>
+    <div class="bg-circle big"></div>
 
     <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/searchpanes/1.2.0/js/dataTables.searchPanes.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
     <script type="text/javascript" src="/dist/app.bundle.js"></script>
 
 </body>

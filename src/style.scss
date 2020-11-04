@@ -1,4 +1,3 @@
-
 /***********************
 * BASE
 ***********************/
@@ -9,45 +8,37 @@
         "scss/base/5-breakpoints",
         "scss/base/6-layout-grid",
         "scss/base/7-containers",
-        "scss/base/8-mixins";
+        "scss/base/8-mixins",
+        "scss/base/9-theme";
 
 
 /***********************
 * COMPONENTS Predefined components
 ***********************/
-//example
-/* @import "scss/components/accordions",
-        "scss/components/carousels",
-        "scss/components/dropdowns",
-        "scss/components/grids",
-        "scss/components/grid-items",
-        "scss/components/tables",
-        "scss/components/modal",
-        "scss/components/audio",
-        "scss/components/video",
-        "scss/components/footer"; */
+@import "scss/components/mainTable";
 
 
 /***********************
 * ELEMENTS  
 ***********************/
+@import "scss/elements/shapes";
+@import "scss/elements/logo";
 
 /***********************
 * LAYOUT  
 ***********************/
+@import "scss/layout/containers";
 
 /***********************
-* SECTIONS  !sections are not predefined
+* SECTIONS
 ***********************/
 
-
 /***********************
-* PAGES  !pages are not predefined
-***********************/ 
-        
-        
+* PAGES
+***********************/
+@import "scss/pages/homepage";
 
-
+        
 /***********************
 * VENDORS Vendor specific css, copied in scss files
 ***********************/

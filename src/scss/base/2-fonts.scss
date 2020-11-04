@@ -1,5 +1,6 @@
 // Font path works best by reaching it with relative path from style.scss
 
+
 @font-face {
 	font-family: "Poppins";
 	src: url("assets/fonts/Poppins-Regular.ttf") format("ttf");
@@ -9,5 +10,5 @@
 }
 
 $font-family-primary: "Poppins";
-//$font-family-secondary: "font";
+$font-family-secondary: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
  

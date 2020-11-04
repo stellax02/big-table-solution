@@ -1,9 +1,9 @@
 // Basic color palette provided by the design team for general layout
-$color-primary: #171C34;
-$color-secondary: #919AA3;
+$color-primary: #FF5A00;
+$color-secondary: #36393B;
 
 $color-primary-light: #fff;
-$color-secondary-light: #fff;
+$color-secondary-light: #F3F3F3;
 
  
 //Basic colors for text
@@ -12,17 +12,25 @@ $color-txt-secondary: #171C34;
 $color-txt-light:  #fff;
 $color-txt-dark: #000;
 
+//Basic colors for pages
+$color-bg-page: #F3F3F3;
+$color-bg-accents: #FF5A00;
+
+//Basic colors for design elements
+$color-bg-orange: #F8B332;
+$color-bg-turquise: #3EBCCA;
+$color-bg-mint: #B8DCD2;
+$color-bg-redorange: #EA530E;
+
 /*
 color-error
 color-warning
 color-neutral
 color-success
 */
-
-
 // Action colors provided for highlighted elements
-$color-highlight-txt: red;
-$color-highlight-elem: pink;
+$color-highlight-txt: #FF5A00;
+$color-highlight-elem: #FF5A00;
 
 
 
