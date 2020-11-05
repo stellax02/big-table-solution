@@ -1,4 +1,4 @@
-export class ClassToggler{
+export default class ClassToggler{
     constructor(targetElementClass){
         this.targetElementClass = targetElementClass;
     }
@@ -14,16 +14,14 @@ export class ClassToggler{
                let targetToggableElementId = targetElement.dataset.target;
                let targetToggableElement = document.querySelector(targetToggableElementId);
                targetElement.addEventListener('click', () => {
-                    this.toggleClass(targetToggableElement, targetToggableClass);
+                   this.toggleClass(targetToggableElement, targetToggableClass);
+                   this.toggleClass(targetToggableElement, targetToggableClass);
                })
            }
     }
 
-    toggleClass(element, targetClass){
-        element.classList.toggle(targetClass);
+    toggleClass(targetElement, targetToggableClass){
+        targetElement.classList.toggle(targetToggableClass);
     }
     
 }
-
-/* const classToggler = new ClassToggler('.q_classToggler');
-classToggler.initializeControls(); */

@@ -9,13 +9,17 @@ $('#dataFilter').DataTable({
     },
     initComplete: function () {
 
-   
+        $('.dataTables_filter input').attr('placeholder', 'Search');
+
         $('#dataFilter thead').append('<tr class="c-mainTable__filters"></tr>');
+        $('#dataFilter .c-mainTable__filters').append('<div class="c-mainTable__button"><input type="button" value="Open filters" class="filters_Toggler" data-class="open" data-target=".c-mainTable__modal" /></div>');
+        $('#dataFilter .c-mainTable__filters').append('<div class="c-mainTable__modal"></div>');
+        
 
             this.api().columns().every(function () {
                 var column = this;
-                var select = $('<select><option value="">Show all</option></select>')
-                    .appendTo(('#dataFilter .c-mainTable__filters'))
+                var select = $('<datalist id="Column' + this.index() +'"></datalist>')
+                    .appendTo(('#dataFilter .c-mainTable__modal'))
                     .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
                             $(this).val()
@@ -30,7 +34,7 @@ $('#dataFilter').DataTable({
                     select.append('<option value="' + d + '">' + d + '</option>')
                 });
 
-                $(this).html('<input type="text" />').appendTo.select;
+                select.before('<input class="datalist-filter" type="text" list="Column' + this.index() +'" placeholder="Show all" />');
             });
 
     }

@@ -9,6 +9,15 @@
 	src: url("assets/fonts/Poppins-Regular.woff2") format("woff2");
 }
 
+@font-face {
+	font-family: "Fontello";
+	src: url("assets/fonts/fontello/fontello.ttf") format("ttf");
+	src: url("assets/fonts/fontello/fontello.eot") format("eot");
+	src: url("assets/fonts/fontello/fontello.svg") format("svg");
+	src: url("assets/fonts/fontello/fontello.woff") format("woff");
+	src: url("assets/fonts/fontello/fontello.woff2") format("woff2");
+}
+
 $font-family-primary: "Poppins";
 $font-family-secondary: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
- 
+$font-family-icons: "Fontello";

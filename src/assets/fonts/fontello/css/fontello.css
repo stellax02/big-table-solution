@@ -1,11 +1,13 @@
-@font-face {
+@charset "UTF-8";
+
+ @font-face {
   font-family: 'fontello';
-  src: url('../font/fontello.eot?36532736');
-  src: url('../font/fontello.eot?36532736#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?36532736') format('woff2'),
-       url('../font/fontello.woff?36532736') format('woff'),
-       url('../font/fontello.ttf?36532736') format('truetype'),
-       url('../font/fontello.svg?36532736#fontello') format('svg');
+  src: url('../font/fontello.eot?90091904');
+  src: url('../font/fontello.eot?90091904#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?90091904') format('woff2'),
+       url('../font/fontello.woff?90091904') format('woff'),
+       url('../font/fontello.ttf?90091904') format('truetype'),
+       url('../font/fontello.svg?90091904#fontello') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +17,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'fontello';
-    src: url('../font/fontello.svg?36532736#fontello') format('svg');
+    src: url('../font/fontello.svg?90091904#fontello') format('svg');
   }
 }
 */
@@ -24,10 +26,12 @@
   font-family: "fontello";
   font-style: normal;
   font-weight: normal;
-  speak: none;
+  speak: never;
  
   display: inline-block;
   text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
   text-align: center;
   /* opacity: .8; */
  
@@ -40,6 +44,7 @@
  
   /* Animation center compensation - margins should be symmetric */
   /* remove if not needed */
+  margin-left: .2em;
  
   /* you can be more comfortable with increased icons size */
   /* font-size: 120%; */
@@ -52,11 +57,8 @@
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
  
-.icon-earth:before { content: '\e803'; } /* '' */
-.icon-email:before { content: '\e804'; } /* '' */
-.icon-facebook:before { content: '\e805'; } /* '' */
-.icon-mainfeatures-01:before { content: '\e806'; } /* '' */
-.icon-mainfeatures-02:before { content: '\e807'; } /* '' */
-.icon-mainfeatures-03:before { content: '\e808'; } /* '' */
-.icon-mainfeatures-04:before { content: '\e809'; } /* '' */
-.icon-twitter:before { content: '\e80a'; } /* '' */
+.icon-down-open:before { content: '\e75c'; } /* '' */
+.icon-up-open:before { content: '\e75f'; } /* '' */
+.icon-sort-alt-up:before { content: '\f160'; } /* '' */
+.icon-sort-alt-down:before { content: '\f161'; } /* '' */
+.icon-search-1:before { content: '🔍'; } /* '\1f50d' */

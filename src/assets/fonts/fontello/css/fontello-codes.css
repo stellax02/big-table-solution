@@ -1,9 +1,8 @@
+@charset "UTF-8";
 
-.icon-earth:before { content: '\e803'; } /* '' */
-.icon-email:before { content: '\e804'; } /* '' */
-.icon-facebook:before { content: '\e805'; } /* '' */
-.icon-mainfeatures-01:before { content: '\e806'; } /* '' */
-.icon-mainfeatures-02:before { content: '\e807'; } /* '' */
-.icon-mainfeatures-03:before { content: '\e808'; } /* '' */
-.icon-mainfeatures-04:before { content: '\e809'; } /* '' */
-.icon-twitter:before { content: '\e80a'; } /* '' */
+ 
+.icon-down-open:before { content: '\e75c'; } /* '' */
+.icon-up-open:before { content: '\e75f'; } /* '' */
+.icon-sort-alt-up:before { content: '\f160'; } /* '' */
+.icon-sort-alt-down:before { content: '\f161'; } /* '' */
+.icon-search-1:before { content: '🔍'; } /* '\1f50d' */
