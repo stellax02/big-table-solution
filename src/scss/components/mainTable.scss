@@ -18,9 +18,13 @@
         margin: 0 auto;
         border: none;
         outline: none;
-        color: $color-txt-light;
         background-color: transparent;
         font-weight: bold;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
 
         option {
             color: $color-txt-primary;
@@ -48,6 +52,8 @@
         @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
         margin: 0 0 15px;
         grid-area: header;
+        position: sticky;
+        top: 0;
 
         tr {
             background: rgba($color-bg-accents,.9);
