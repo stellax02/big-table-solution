@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
+    "\\data",
     "\\src",
+    "\\src\\assets",
+    "\\src\\assets\\fonts\\fontello",
+    "\\src\\assets\\fonts\\fontello\\font",
+    "\\src\\assets\\icons",
     "\\src\\js",
     "\\src\\scss",
-    "\\src\\scss\\base",
-    "\\src\\scss\\layout",
-    "\\src\\scss\\pages",
-    "\\src\\scss\\sections",
-    "\\src\\scss\\utilities",
-    "\\src\\scss\\vendors"
+    "\\src\\scss\\elements"
   ],
-  "SelectedNode": "\\src\\js\\dataTable.js",
+  "SelectedNode": "\\src\\js\\classToggler.js",
   "PreviewInSolutionExplorer": false
 }

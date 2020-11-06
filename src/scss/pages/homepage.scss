@@ -1,5 +1,13 @@
 .p-homepage {
-    padding: 40px;
+    padding: 60px;
+
+    input, select, a {
+        &:focus, 
+        &:active {
+            border: none;
+            outline: none;
+        }
+    } 
 
     &__content {
         .c-logo {

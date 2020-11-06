@@ -1,6 +1,5 @@
 // search and pagination
 .dataTables_wrapper {
-    
     // Items per page
     .dataTables_length {
         float: right;
@@ -18,10 +17,9 @@
             height: 35px;
         }
     }
-
     // Main Search
     .dataTables_filter {
-        margin: 0 auto;
+        margin: 0 auto 25px;
         text-align: center;
         float: none;
         font-size: 0.8rem;
@@ -34,18 +32,56 @@
             position: relative;
             width: 35%;
             background-color: $color-primary-light;
-            border: none;
+            border: 1px solid $color-secondary-light;
             outline: none;
             font-family: $font-family-primary;
             line-height: 1rem;
             padding: 10px;
             margin: 0 0 0 5px;
             @include box-shadow(0px, 1px, 2px, rgba(0,0,0,.15), inset);
+            transition: outline ease-out;
 
-            &::-webkit-search-cancel-button {
-                -webkit-appearance: searchfield-cancel-button;
+            &:hover {
+                border: 1px solid $color-secondary-medium;
+            }
+
+            &:focus {
+                border: 1px solid $color-bg-mint;
+                @include box-shadow(0px, 0px, 4px, rgba(0,0,0,.3), inset);
             }
         }
+    }
+    // Main Pagination
+    .dataTables_paginate {
+        font-size: 0.8rem;
+
+        .paginate_button {
+            border: none !important;
+            background: none !important;
+            color: $color-txt-dark;
+
+            &.current {
+                border-bottom: 2px solid $color-txt-dark !important;
+            }
+
+            &:hover {
+                color: $color-txt-dark !important;
+            }
+
+            &.next {
+                text-indent: -9999px;
+                overflow: hidden;
+                background: transparent url(assets/icons/arrow_next.svg) center center no-repeat !important;
+                background-size: .6rem !important;
+                vertical-align: top;
+                height: 21px;
+                width: 21px;
+            }
+        }
+    }
+    // Main Table Info
+    .dataTables_info {
+        font-size: 0.8rem;
     }
 }
 
@@ -54,23 +90,18 @@
     display: grid;
     border-collapse: collapse !important;
     width: 100%;
-    margin: 25px auto 0 !important;
+    margin: 0 auto 0 !important;
     background: transparent;
     border: none !important;
     grid-template-rows: auto;
     grid-template-columns: auto;
-    grid-template-areas: "header  body" "header  body";
+    grid-template-areas: "header  header" "body  body";
 
-    @include media(md) {
-        grid-template-areas: "header  header" "body  body";
-    }
 
     thead {
-        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
-        margin: 0 0 15px;
+        position: relative;
+        margin: 0;
         grid-area: header;
-        position: sticky;
-        top: 0;
 
         tr {
             background: rgba($color-bg-accents,.9);
@@ -81,21 +112,25 @@
                 font-size: .9rem;
                 font-weight: normal;
                 border: none;
+                border-right: 1px solid $color-bg-redorange;
             }
 
             .sorting {
                 background-image: url(assets/icons/sort.svg);
                 background-size: 0.7rem;
+                background-position: right 6px center;
             }
 
             .sorting_asc {
                 background-image: url(assets/icons/sort_asc.svg);
                 background-size: 0.7rem;
+                background-position: right 6px center;
             }
 
             .sorting_desc {
                 background-image: url(assets/icons/sort_desc.svg);
                 background-size: 0.7rem;
+                background-position: right 6px center;
             }
 
             th:last-child {
@@ -106,35 +141,86 @@
 
     &__button {
         position: absolute;
-    }
+        display: block !important;
+        background: none !important;
+        padding: 0.5rem 0;
+        top: -8px;
+        left: -45px;
 
-    &__modal {
-        display: contents;
+        input[type="button"] {
+            cursor: pointer;
+            color: $color-primary-light;
+            border: none;
+            outline: none;
+            @include rounded();
+            height: 40px;
+            width: 40px;
+            text-indent: -9999px;
+            overflow: hidden;
+            background: $color-bg-turquise url(assets/icons/filter.svg) center center no-repeat;
+            background-size: 1.4rem;
+
+            &:hover,
+            &:active,
+            &:focus {
+                @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+            }
+        }
     }
 
     &__filters {
         background: rgba($color-primary-light,.95) !important;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s, overflow 0s;
+        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+
+        .datalist-modal {
+            display: contents;
+        }
 
         input.datalist-filter {
+            outline: none !important;
             padding: 5px;
             margin: 15px;
+            opacity: 0;
             @include rounded();
             border: 1px solid $color-bg-mint;
+            transition: outline ease-out, opacity 250ms;
+
+            &:hover {
+                border: 1px solid $color-bg-mint;
+            }
+
+            &:active, &:focus {
+                border: 1px solid $color-bg-turquise;
+            }
+        }
+
+        &.open {
+            max-height: 5em;
+            overflow: visible;
+            transition: max-height 0.5s, overflow 0.5s 0.5s;
+
+            input.datalist-filter {
+                opacity: 1;
+            }
         }
     }
+
 
     tbody {
         @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
         background: rgba($color-primary-light,.95) !important;
         @include rounded();
         grid-area: body;
+        margin: .5rem 0;
 
         tr {
             background: transparent !important;
 
             &.odd td,
             &.even td {
-                border: none !important;
 
                 &.sorting_1 {
                     background: rgba($color-bg-mint-light,.6) !important;
@@ -153,17 +239,21 @@
     tbody tr {
         display: grid;
         width: 100%;
-        grid-template-columns: minmax(120px, 1fr) minmax(120px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+        grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
     }
 
     th,
     td {
-        padding: 15px 20px !important;
-        font-size: 0.9em;
+        padding: .8rem !important;
+        font-size: 0.8em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         text-align: center;
+        box-sizing: content-box;
+        border: 1px solid $color-secondary-light;
+        border-left-width: 0;
+        border-bottom-width: 0;
 
         &:nth-child(1),
         &:nth-child(2),
