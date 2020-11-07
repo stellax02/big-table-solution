@@ -94,8 +94,13 @@
     background: transparent;
     border: none !important;
     grid-template-rows: auto;
-    grid-template-columns: auto;
-    grid-template-areas: "header  header" "body  body";
+    grid-template-columns: 130px auto;
+    grid-template-areas: "header  body" "header  body";
+
+    @include media(xl) {
+        grid-template-columns: auto;
+        grid-template-areas: "header  header" "body  body";
+    }
 
 
     thead {
@@ -210,11 +215,20 @@
 
 
     tbody {
+        grid-area: body;
+        display: grid;
+        grid-auto-flow: column;
+        overflow-x: scroll;
         @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
         background: rgba($color-primary-light,.95) !important;
         @include rounded();
-        grid-area: body;
-        margin: .5rem 0;
+        margin: 0;
+
+        @include media(xl) {
+            margin: .5rem 0;
+            grid-auto-flow: row;
+            overflow-x: hidden;
+        }
 
         tr {
             background: transparent !important;
@@ -239,7 +253,16 @@
     tbody tr {
         display: grid;
         width: 100%;
-        grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+        grid-auto-flow: column dense;
+        grid-template-rows: repeat(13, 1fr);
+        grid-auto-columns: minmax(130px, auto);
+
+
+        @include media(xl) {
+            grid-auto-flow: row dense;
+            grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+            grid-template-rows: auto;
+        }
     }
 
     th,
@@ -249,17 +272,21 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        text-align: center;
+        text-align: left;
         box-sizing: content-box;
         border: 1px solid $color-secondary-light;
         border-left-width: 0;
         border-bottom-width: 0;
 
-        &:nth-child(1),
-        &:nth-child(2),
-        &:nth-child(5),
-        &:nth-child(7) {
-            text-align: left;
+        @include media(xl) {
+            text-align: center;
+
+            &:nth-child(1),
+            &:nth-child(2),
+            &:nth-child(5),
+            &:nth-child(7) {
+                text-align: left;
+            }
         }
     }
 }

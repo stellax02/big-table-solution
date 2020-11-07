@@ -4,13 +4,13 @@
     "\\data",
     "\\src",
     "\\src\\assets",
-    "\\src\\assets\\fonts\\fontello",
-    "\\src\\assets\\fonts\\fontello\\font",
     "\\src\\assets\\icons",
     "\\src\\js",
     "\\src\\scss",
-    "\\src\\scss\\elements"
+    "\\src\\scss\\base",
+    "\\src\\scss\\elements",
+    "\\src\\scss\\pages"
   ],
-  "SelectedNode": "\\src\\js\\classToggler.js",
+  "SelectedNode": "\\src\\assets\\icons\\arrow_next.svg",
   "PreviewInSolutionExplorer": false
 }

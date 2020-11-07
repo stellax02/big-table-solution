@@ -2,25 +2,7 @@ var table = $('#dataFilter').DataTable({
     "ajax": "./data/company.txt",
     "pageLength": 25,
     "lengthMenu": [25, 50, 100],
-    orderCellsTop: true,
-    fixedHeader: {
-        header: true
-    },
-    columns: [
-        { name: 'Company' },
-        { name: 'Customer' },
-        { name: 'Fiscal year' },
-        { name: 'Doc. number' },
-        { name: 'Doc. type' },
-        { name: 'Doc. status' },
-        { name: 'Bank name' },
-        { name: 'Doc. period' },
-        { name: 'Amount' },
-        { name: 'Currency' },
-        { name: 'Due in' },
-        { name: 'Service' },
-        { name: 'Is Paid' },
-    ],
+    orderCellsTop: true, 
 
 
     initComplete: function () {
@@ -64,14 +46,8 @@ var table = $('#dataFilter').DataTable({
                 select.append('<option value="' + d + '">' + d + '</option>')
             });
 
-            colArray = [];
-            $.each(table.columns, function (index, value) {
-                colArray.push({
-                    name: table.columns[value.name]
-                });
-            });
 
-            select.before('<input class="datalist-filter" type="text" list="Column' + this.index() + '" placeholder="' + colArray + '" />');
+            select.before('<input class="datalist-filter" type="text" list="Column' + this.index() + '" placeholder="Show all" />');
         });
 
     }
