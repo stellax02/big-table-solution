@@ -2,8 +2,10 @@ var table = $('#dataFilter').DataTable({
     "ajax": "./data/company.txt",
     "pageLength": 25,
     "lengthMenu": [25, 50, 100],
-    orderCellsTop: true, 
-
+    orderCellsTop: true,
+    fixedHeader: {
+        header: true
+    },
 
     initComplete: function () {
 
@@ -25,14 +27,19 @@ var table = $('#dataFilter').DataTable({
             $(this).val(show ? 'Hide filters' : 'Open filters');
         });
 
-       
+        // Checked / Unchecked icons
+
+        $('td').filter(function () {
+            return $(this).text() === "checked";
+        }).addClass("checked");
+        $('td:contains("unchecked")').addClass("unchecked");
 
         // Create Column Filters
         this.api().columns().every(function () {
             var column = this;
             var select = $('<datalist id="Column' + this.index() +'"></datalist>')
                 .appendTo(('#dataFilter .datalist-modal'))
-                .on('change', function () {
+                .on('click', function () {
                     var val = $.fn.dataTable.util.escapeRegex(
                         $(this).val()
                     );

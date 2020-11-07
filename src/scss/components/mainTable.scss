@@ -2,7 +2,8 @@
 .dataTables_wrapper {
     // Items per page
     .dataTables_length {
-        float: right;
+        position: absolute;
+        right: 0;
         font-size: 0.8rem;
 
         label {
@@ -12,7 +13,7 @@
         select[name="dataFilter_length"] {
             border: none;
             border-bottom: 2px solid $color-txt-primary;
-            border-radius: 0;
+            @include rounded(0);
             outline: none;
             height: 35px;
         }
@@ -30,14 +31,14 @@
 
         input[type="search"] {
             position: relative;
-            width: 35%;
+            width: 400px;
             background-color: $color-primary-light;
             border: 1px solid $color-secondary-light;
             outline: none;
             font-family: $font-family-primary;
             line-height: 1rem;
             padding: 10px;
-            margin: 0 0 0 5px;
+            margin: 0;
             @include box-shadow(0px, 1px, 2px, rgba(0,0,0,.15), inset);
             transition: outline ease-out;
 
@@ -58,30 +59,47 @@
         .paginate_button {
             border: none !important;
             background: none !important;
+            box-shadow: none !important;
             color: $color-txt-dark;
 
             &.current {
                 border-bottom: 2px solid $color-txt-dark !important;
             }
 
-            &:hover {
+            &:hover,
+            &:focus {
                 color: $color-txt-dark !important;
             }
 
-            &.next {
+            &.next,
+            &.previous {
                 text-indent: -9999px;
                 overflow: hidden;
                 background: transparent url(assets/icons/arrow_next.svg) center center no-repeat !important;
                 background-size: .6rem !important;
                 vertical-align: top;
-                height: 21px;
-                width: 21px;
+                height: 20px;
+                width: 20px;
+
+                &.disabled {
+                    opacity: .3;
+                }
+            }
+
+            &.previous {
+                background: transparent url(assets/icons/arrow_previous.svg) center center no-repeat !important;
+                background-size: .6rem !important;
             }
         }
     }
     // Main Table Info
     .dataTables_info {
         font-size: 0.8rem;
+        display: none;
+
+        @include media(sm) {
+            display: block;
+        }
     }
 }
 
@@ -102,14 +120,25 @@
         grid-template-areas: "header  header" "body  body";
     }
 
+    &.fixedHeader-floating,
+    &.fixedHeader-locked {
+        top: auto !important;
+        display: none;
+
+        @include media(xl) {
+            top: 0 !important;
+            display: block;
+        }
+    }
 
     thead {
         position: relative;
         margin: 0;
         grid-area: header;
+        width: auto;
 
         tr {
-            background: rgba($color-bg-accents,.9);
+            background-color: $color-bg-accents;
             @include rounded();
 
             th {
@@ -117,7 +146,12 @@
                 font-size: .9rem;
                 font-weight: normal;
                 border: none;
-                border-right: 1px solid $color-bg-redorange;
+                border-bottom: 1px solid $color-bg-redorange;
+
+                @include media(xl) {
+                    border-right: 1px solid $color-bg-redorange;
+                    border-bottom: none;
+                }
             }
 
             .sorting {
@@ -144,41 +178,70 @@
         }
     }
 
+    &__header {
+        position: relative;
+        z-index: $z-index--header;
+    }
+
     &__button {
         position: absolute;
-        display: block !important;
-        background: none !important;
-        padding: 0.5rem 0;
-        top: -8px;
-        left: -45px;
+        padding: 0;
+        top: -20px;
+        left: 0;
+
+        @include media(md) {
+            top: 0;
+            left: -45px;
+        }
 
         input[type="button"] {
             cursor: pointer;
             color: $color-primary-light;
             border: none;
             outline: none;
+            height: 20px;
+            width: 150px;
             @include rounded();
-            height: 40px;
-            width: 40px;
-            text-indent: -9999px;
-            overflow: hidden;
             background: $color-bg-turquise url(assets/icons/filter.svg) center center no-repeat;
             background-size: 1.4rem;
+            transition: background-color 250ms;
+
+            @include media(md) {
+                height: 40px;
+                width: 40px;
+                text-indent: -9999px;
+                overflow: hidden;
+            }
 
             &:hover,
             &:active,
             &:focus {
                 @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+                background-color: darken($color-bg-turquise, 5%);
             }
         }
     }
 
     &__filters {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
         background: rgba($color-primary-light,.95) !important;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s, overflow 0s;
         @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+        opacity: 1;
+        z-index: $z-index--under--header;
+        transition: left 0.5s;
+
+        @include media(xl) {
+            opacity: 1;
+            max-height: 0;
+            overflow: hidden;
+            position: relative;
+            top: auto;
+            left: auto;
+            transition: max-height 0.5s, overflow 0s;
+        }
 
         .datalist-modal {
             display: contents;
@@ -187,11 +250,15 @@
         input.datalist-filter {
             outline: none !important;
             padding: 5px;
-            margin: 15px;
+            margin: 5px;
             opacity: 0;
             @include rounded();
             border: 1px solid $color-bg-mint;
-            transition: outline ease-out, opacity 250ms;
+            transition: border 250ms, opacity 250ms;
+
+            @include media(xl) {
+                margin: 15px;
+            }
 
             &:hover {
                 border: 1px solid $color-bg-mint;
@@ -203,12 +270,20 @@
         }
 
         &.open {
-            max-height: 5em;
-            overflow: visible;
-            transition: max-height 0.5s, overflow 0.5s 0.5s;
+            left: 130px;
+            opacity: 1;
+
 
             input.datalist-filter {
                 opacity: 1;
+            }
+
+            @include media(xl) {
+                top: auto;
+                left: auto;
+                max-height: 5em;
+                overflow: visible;
+                transition: max-height 0.5s, overflow 0.5s 0.5s;
             }
         }
     }
@@ -223,6 +298,7 @@
         background: rgba($color-primary-light,.95) !important;
         @include rounded();
         margin: 0;
+        overflow-y: hidden;
 
         @include media(xl) {
             margin: .5rem 0;
@@ -233,17 +309,34 @@
         tr {
             background: transparent !important;
 
+            td {
+                border: 1px solid $color-secondary-light !important;
+                border-width: 0 1px 1px 0 !important;
+
+                @include media(xl) {
+                    border-width: 1px 1px 0 0 !important;
+                }
+
+                &.checked {
+                    text-indent: -9999px;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    
+                    &:after {
+                        content: "\2713";
+                    }
+                }
+
+                &:hover & {
+                    background: rgba($color-secondary-light,.8) !important;
+                }
+            }
+
             &.odd td,
             &.even td {
 
                 &.sorting_1 {
-                    background: rgba($color-bg-mint-light,.6) !important;
-                }
-            }
-
-            &:hover {
-                td {
-                    background: rgba($color-secondary-light,.8) !important;
+                    background: rgba($color-bg-mint,.1) !important;
                 }
             }
         }
@@ -274,9 +367,7 @@
         white-space: nowrap;
         text-align: left;
         box-sizing: content-box;
-        border: 1px solid $color-secondary-light;
-        border-left-width: 0;
-        border-bottom-width: 0;
+        transition: 250ms;
 
         @include media(xl) {
             text-align: center;

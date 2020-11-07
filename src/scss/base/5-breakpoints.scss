@@ -2,7 +2,7 @@
 $break-xs: 480px;
 
 //Breakpoint for max size for small mobile devices
-$break-sm: 770px;  
+$break-sm: 768px;  
 
 //Breakpoint for larger mobile or smaller tablet devices
 $break-md: 960px;
@@ -15,13 +15,13 @@ $break-xl: 1600px;
 
 $breakpoints: ( 
     xs: $break-xs, 
-    xs-max: ($break-xs) - 1px, 
+    xs-max: ($break-xs), 
     sm: $break-sm, 
-    sm-max: ($break-sm) - 1px, 
+    sm-max: ($break-sm), 
     md: $break-md, 
-    md-max: ($break-md) - 1px, 
+    md-max: ($break-md), 
     lg: $break-lg, 
-    lg-max: ($break-lg) - 1px, 
+    lg-max: ($break-lg), 
     xl: $break-xl
 );
 
