@@ -146,7 +146,7 @@
             position: relative;
             z-index: $z-index--header;
         }
-
+        // Table filters button
         &__button {
             position: absolute;
             padding: 0;
@@ -194,7 +194,7 @@
                 }
             }
         }
-
+        // Table filters
         &__filters {
             position: absolute;
             top: 0;
@@ -262,7 +262,7 @@
                 }
             }
         }
-
+        // Table heading list
         thead {
             position: relative;
             margin: 0;
@@ -276,6 +276,7 @@
                     top: 0;
                     margin-right: 60px;
                     animation: smoothScroll 400ms forwards;
+                    z-index: $z-index--header;
                 }
             }
 
@@ -332,7 +333,7 @@
                 }
             }
         }
-
+        // Table body data list
         tbody {
             grid-area: body;
             display: grid;
@@ -351,6 +352,7 @@
             }
 
             tr {
+                position: relative;
                 background: transparent !important;
 
                 td {
@@ -376,6 +378,8 @@
                         background-image: url(assets/icons/uncheck.svg);
                     }
                 }
+
+
 
                 &.odd td,
                 &.even td {

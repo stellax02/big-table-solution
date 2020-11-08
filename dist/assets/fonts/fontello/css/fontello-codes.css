@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+ 
+.icon-down-open:before { content: '\e75c'; } /* '' */
+.icon-up-open:before { content: '\e75f'; } /* '' */
+.icon-sort-alt-up:before { content: '\f160'; } /* '' */
+.icon-sort-alt-down:before { content: '\f161'; } /* '' */
+.icon-search-1:before { content: '🔍'; } /* '\1f50d' */
