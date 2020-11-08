@@ -2,7 +2,9 @@ var table = $('#dataFilter').DataTable({
     "ajax": "./data/company.txt",
     "pageLength": 25,
     "lengthMenu": [25, 50, 100],
- 
+    fixedColumns: {
+        leftColumns: 1
+    }, 
 
     initComplete: function () {
 
@@ -39,13 +41,12 @@ var table = $('#dataFilter').DataTable({
         // Create Column Filters
         this.api().columns().every(function () {
             var column = this;
-            var select = $('<datalist id="Column' + this.index() +'"></datalist>')
+            var select = $('<select class="datalist-filter"><option value="">'+ "Search All" +'</option></select>')
                 .appendTo(('#dataFilter .datalist-modal'))
-                .on('click', function () {
+                .on('change', function () {
                     var val = $.fn.dataTable.util.escapeRegex(
                         $(this).val()
                     );
-
                     column
                         .search(val ? '^' + val + '$' : '', true, false)
                         .draw();
@@ -59,8 +60,6 @@ var table = $('#dataFilter').DataTable({
                 }).addClass("checked");
                 $('td:contains("unchecked")').addClass("unchecked");
             });
-
-            select.before('<input class="datalist-filter" type="text" list="Column' + this.index() + '" placeholder="Show all" />');
         });
 
     }

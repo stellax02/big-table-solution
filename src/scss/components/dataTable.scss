@@ -199,7 +199,7 @@
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
+            height: auto;
             background: rgba($color-primary-light,.95) !important;
             @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
             opacity: 1;
@@ -207,6 +207,7 @@
             transition: left 0.5s;
 
             @include media(xl) {
+                height: 100%;
                 opacity: 1;
                 max-height: 0;
                 overflow: hidden;
@@ -220,13 +221,15 @@
                 display: contents;
             }
 
-            input.datalist-filter {
+            .datalist-filter {
                 outline: none !important;
-                padding: 5px;
-                margin: 5px;
+                padding: 3px;
+                margin: .333rem;
+                height: 28px;
                 opacity: 0;
                 @include rounded();
                 border: 1px solid $color-bg-mint;
+                background-color: $color-primary-light;
                 transition: border 250ms, opacity 250ms;
 
                 @include media(xl) {
@@ -246,8 +249,7 @@
                 left: 130px;
                 opacity: 1;
 
-
-                input.datalist-filter {
+                .datalist-filter {
                     opacity: 1;
                 }
 
@@ -278,8 +280,12 @@
             }
 
             tr {
-                background-color: rgba($color-bg-accents, .9);
+                background-color: lighten($color-bg-accents, 5%);
                 @include rounded();
+
+                @include media(xl) {
+                    background-color: rgba($color-bg-accents, .9);
+                }
 
                 th {
                     color: $color-txt-light;

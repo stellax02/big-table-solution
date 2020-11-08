@@ -118,7 +118,7 @@
       "EUR",
       "60-90",
       "WhatsApp",
-      "checked"
+      "unchecked"
     ],
     [
       "Infobip",
@@ -238,7 +238,7 @@
       "EUR",
       "60-90",
       "WhatsApp",
-      "checked"
+      "unchecked"
     ],
     [
       "Infobip",
@@ -253,7 +253,7 @@
       "EUR",
       "today",
       "SMS",
-      "checked"
+      "unchecked"
     ],
      [
       "Infobip",
