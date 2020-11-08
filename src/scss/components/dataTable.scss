@@ -343,12 +343,12 @@
             background: rgba($color-primary-light,.95) !important;
             @include rounded();
             margin: 0;
-            overflow-y: hidden;
+            overflow-y: visible;
 
             @include media(xl) {
                 margin: .5rem 0;
                 grid-auto-flow: row;
-                overflow-x: hidden;
+                overflow-x: visible;
             }
 
             tr {
@@ -379,7 +379,31 @@
                     }
                 }
 
+                &:before {
+                    @include media(xl) {
+                        content: "";
+                        position: absolute;
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        left: -45px;
+                        top: auto;
+                        height: 40px;
+                        width: 40px;
+                        background: transparent url(assets/icons/edit.svg) right 7px center no-repeat;
+                        transition: all 250ms ease-in-out;
+                        -webkit-tap-highlight-color: transparent;
+                        background-position: center center;
+                        background-size: 1rem;
+                        @include rounded(.3em);
 
+                        &:hover,
+                        &:active,
+                        &:focus {
+                            -webkit-tap-highlight-color: transparent;
+                        }
+                    }
+                }
 
                 &.odd td,
                 &.even td {
