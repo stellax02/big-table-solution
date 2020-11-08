@@ -377,6 +377,12 @@
                     &.unchecked {
                         background-image: url(assets/icons/uncheck.svg);
                     }
+
+                    &.dataTables_empty {
+                        background: none;
+                        text-indent: 0;
+                        border: none !important;
+                    }
                 }
 
                 &:before {
