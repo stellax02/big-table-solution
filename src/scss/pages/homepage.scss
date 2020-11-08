@@ -17,6 +17,12 @@
         .c-logo {
             position: absolute;
             margin: 0;
+
+            span {
+                @include media(md-max) {
+                    clip-path: circle(40px at left);
+                }
+            }
         }
     }
 }

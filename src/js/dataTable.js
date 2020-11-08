@@ -2,12 +2,21 @@ var table = $('#dataFilter').DataTable({
     "ajax": "./data/company.txt",
     "pageLength": 25,
     "lengthMenu": [25, 50, 100],
-    orderCellsTop: true,
-    fixedHeader: {
-        header: true
-    },
+ 
 
     initComplete: function () {
+
+        // Fixed Header
+        var header = $('thead');
+        var hieghtThreshold = header.offset().top;
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= hieghtThreshold) {
+                header.addClass('fixed')
+            } else {
+                header.removeClass('fixed');
+            }
+        });
 
         // Main Search Placeholder
         $('.dataTables_filter input').attr('placeholder', 'Search');
@@ -27,13 +36,6 @@ var table = $('#dataFilter').DataTable({
             $(this).val(show ? 'Hide filters' : 'Open filters');
         });
 
-        // Checked / Unchecked icons
-
-        $('td').filter(function () {
-            return $(this).text() === "checked";
-        }).addClass("checked");
-        $('td:contains("unchecked")').addClass("unchecked");
-
         // Create Column Filters
         this.api().columns().every(function () {
             var column = this;
@@ -51,8 +53,12 @@ var table = $('#dataFilter').DataTable({
 
             column.data().unique().sort().each(function (d, j) {
                 select.append('<option value="' + d + '">' + d + '</option>')
+                // Checked / Unchecked icons
+                $('td').filter(function () {
+                    return $(this).text() === "checked";
+                }).addClass("checked");
+                $('td:contains("unchecked")').addClass("unchecked");
             });
-
 
             select.before('<input class="datalist-filter" type="text" list="Column' + this.index() + '" placeholder="Show all" />');
         });

@@ -122,3 +122,12 @@
         box-shadow: $top $left $blur $color;
     }
 }
+// Mixin for smooth scroll
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}

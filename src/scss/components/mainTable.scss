@@ -1,4 +1,4 @@
-// search and pagination
+// Main Wrapper around Table
 .dataTables_wrapper {
     // Items per page
     .dataTables_length {
@@ -20,7 +20,7 @@
     }
     // Main Search
     .dataTables_filter {
-        margin: 0 auto 25px;
+        margin: 0 auto;
         text-align: center;
         float: none;
         font-size: 0.8rem;
@@ -101,282 +101,327 @@
             display: block;
         }
     }
-}
-
-// main Table for filtering
-.c-mainTable {
-    display: grid;
-    border-collapse: collapse !important;
-    width: 100%;
-    margin: 0 auto 0 !important;
-    background: transparent;
-    border: none !important;
-    grid-template-rows: auto;
-    grid-template-columns: 130px auto;
-    grid-template-areas: "header  body" "header  body";
-
-    @include media(xl) {
-        grid-template-columns: auto;
-        grid-template-areas: "header  header" "body  body";
-    }
-
-    &.fixedHeader-floating,
-    &.fixedHeader-locked {
-        top: auto !important;
-        display: none;
-
-        @include media(xl) {
-            top: 0 !important;
-            display: block;
-        }
-    }
-
-    thead {
-        position: relative;
-        margin: 0;
-        grid-area: header;
-        width: auto;
-
-        tr {
-            background-color: $color-bg-accents;
-            @include rounded();
-
-            th {
-                color: $color-txt-light;
-                font-size: .9rem;
-                font-weight: normal;
-                border: none;
-                border-bottom: 1px solid $color-bg-redorange;
-
-                @include media(xl) {
-                    border-right: 1px solid $color-bg-redorange;
-                    border-bottom: none;
-                }
-            }
-
-            .sorting {
-                background-image: url(assets/icons/sort.svg);
-                background-size: 0.7rem;
-                background-position: right 6px center;
-            }
-
-            .sorting_asc {
-                background-image: url(assets/icons/sort_asc.svg);
-                background-size: 0.7rem;
-                background-position: right 6px center;
-            }
-
-            .sorting_desc {
-                background-image: url(assets/icons/sort_desc.svg);
-                background-size: 0.7rem;
-                background-position: right 6px center;
-            }
-
-            th:last-child {
-                border: 0;
-            }
-        }
-    }
-
-    &__header {
-        position: relative;
-        z-index: $z-index--header;
-    }
-
-    &__button {
-        position: absolute;
-        padding: 0;
-        top: -20px;
-        left: 0;
+    // main Table for filtering
+    .c-mainTable {
+        display: grid;
+        border-collapse: collapse !important;
+        width: 100%;
+        margin: 50px auto 0 !important;
+        background: transparent;
+        border: none !important;
+        grid-template-rows: auto;
+        grid-template-columns: 130px auto;
+        grid-template-areas: "header  body" "header  body";
 
         @include media(md) {
-            top: 0;
-            left: -45px;
+            margin: 25px auto 0 !important;
         }
 
-        input[type="button"] {
-            cursor: pointer;
-            color: $color-primary-light;
-            border: none;
-            outline: none;
-            height: 20px;
-            width: 150px;
-            @include rounded();
-            background: $color-bg-turquise url(assets/icons/filter.svg) center center no-repeat;
-            background-size: 1.4rem;
-            transition: background-color 250ms;
+        @include media(xl) {
+            grid-template-columns: auto;
+            grid-template-areas: "header  header" "body  body";
+        }
+
+        &.fixedHeader-floating,
+        &.fixedHeader-locked {
+            top: auto !important;
+
+
+            @include media(xl) {
+                top: 0 !important;
+                display: block;
+            }
+        }
+
+        &__title {
+            position: relative;
+            z-index: $z-index--header;
+        }
+
+        &__button {
+            position: absolute;
+            padding: 0;
+            top: -37px;
+            left: 0;
 
             @include media(md) {
+                top: 0;
+                left: -45px;
+            }
+
+            input[type="button"] {
+                cursor: pointer;
+                text-align: left;
+                padding: 0 .8rem;
+                font-family: 'Poppins';
+                font-size: .8rem;
+                color: $color-primary-light;
+                border: none;
+                outline: none;
                 height: 40px;
-                width: 40px;
-                text-indent: -9999px;
-                overflow: hidden;
-            }
+                width: 130px;
+                @include rounded(.3em .3em 0 0);
+                background: $color-bg-turquise url(assets/icons/filter.svg) right 7px center no-repeat;
+                background-size: 1.1rem;
+                transition: all 250ms ease-in-out;
+                -webkit-tap-highlight-color: transparent;
 
-            &:hover,
-            &:active,
-            &:focus {
-                @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
-                background-color: darken($color-bg-turquise, 5%);
-            }
-        }
-    }
-
-    &__filters {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background: rgba($color-primary-light,.95) !important;
-        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
-        opacity: 1;
-        z-index: $z-index--under--header;
-        transition: left 0.5s;
-
-        @include media(xl) {
-            opacity: 1;
-            max-height: 0;
-            overflow: hidden;
-            position: relative;
-            top: auto;
-            left: auto;
-            transition: max-height 0.5s, overflow 0s;
-        }
-
-        .datalist-modal {
-            display: contents;
-        }
-
-        input.datalist-filter {
-            outline: none !important;
-            padding: 5px;
-            margin: 5px;
-            opacity: 0;
-            @include rounded();
-            border: 1px solid $color-bg-mint;
-            transition: border 250ms, opacity 250ms;
-
-            @include media(xl) {
-                margin: 15px;
-            }
-
-            &:hover {
-                border: 1px solid $color-bg-mint;
-            }
-
-            &:active, &:focus {
-                border: 1px solid $color-bg-turquise;
-            }
-        }
-
-        &.open {
-            left: 130px;
-            opacity: 1;
-
-
-            input.datalist-filter {
-                opacity: 1;
-            }
-
-            @include media(xl) {
-                top: auto;
-                left: auto;
-                max-height: 5em;
-                overflow: visible;
-                transition: max-height 0.5s, overflow 0.5s 0.5s;
-            }
-        }
-    }
-
-
-    tbody {
-        grid-area: body;
-        display: grid;
-        grid-auto-flow: column;
-        overflow-x: scroll;
-        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
-        background: rgba($color-primary-light,.95) !important;
-        @include rounded();
-        margin: 0;
-        overflow-y: hidden;
-
-        @include media(xl) {
-            margin: .5rem 0;
-            grid-auto-flow: row;
-            overflow-x: hidden;
-        }
-
-        tr {
-            background: transparent !important;
-
-            td {
-                border: 1px solid $color-secondary-light !important;
-                border-width: 0 1px 1px 0 !important;
-
-                @include media(xl) {
-                    border-width: 1px 1px 0 0 !important;
-                }
-
-                &.checked {
+                @include media(md) {
+                    height: 40px;
+                    width: 40px;
                     text-indent: -9999px;
                     overflow: hidden;
-                    white-space: nowrap;
-                    
-                    &:after {
-                        content: "\2713";
+                    background-position: center center;
+                    background-size: 1.4rem;
+                    @include rounded(.3em);
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+                        @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+                        background-color: darken($color-bg-turquise, 5%);
+                        -webkit-tap-highlight-color: transparent;
+                    }
+                }
+            }
+        }
+
+        &__filters {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba($color-primary-light,.95) !important;
+            @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+            opacity: 1;
+            z-index: $z-index--under--header;
+            transition: left 0.5s;
+
+            @include media(xl) {
+                opacity: 1;
+                max-height: 0;
+                overflow: hidden;
+                position: relative;
+                top: auto;
+                left: auto;
+                transition: max-height 0.5s, overflow 0s;
+            }
+
+            .datalist-modal {
+                display: contents;
+            }
+
+            input.datalist-filter {
+                outline: none !important;
+                padding: 5px;
+                margin: 5px;
+                opacity: 0;
+                @include rounded();
+                border: 1px solid $color-bg-mint;
+                transition: border 250ms, opacity 250ms;
+
+                @include media(xl) {
+                    margin: 15px;
+                }
+
+                &:hover {
+                    border: 1px solid $color-bg-mint;
+                }
+
+                &:active, &:focus {
+                    border: 1px solid $color-bg-turquise;
+                }
+            }
+
+            &.open {
+                left: 130px;
+                opacity: 1;
+
+
+                input.datalist-filter {
+                    opacity: 1;
+                }
+
+                @include media(xl) {
+                    top: auto;
+                    left: auto;
+                    max-height: 5em;
+                    overflow: visible;
+                    transition: max-height 0.5s, overflow 0.5s 0.5s;
+                }
+            }
+        }
+
+        thead {
+            position: relative;
+            margin: 0;
+            grid-area: header;
+            width: auto;
+            top: auto;
+
+            &.fixed {
+                @include media(xl) {
+                    position: fixed;
+                    top: 0;
+                    margin-right: 60px;
+                    animation: smoothScroll 400ms forwards;
+                }
+            }
+
+            tr {
+                background-color: rgba($color-bg-accents, .9);
+                @include rounded();
+
+                th {
+                    color: $color-txt-light;
+                    font-size: .8rem;
+                    font-weight: normal;
+                    border: none;
+                    border-bottom: 1px solid $color-bg-redorange;
+
+                    @include media(xl) {
+                        border-bottom: none;
+                    }
+
+                    &:first-child {
+                        border-radius: .3em 0 0 .3em;
+                    }
+
+                    &:last-child {
+                        border-bottom: 0 !important;
+                        border-radius: 0 .3em .3em 0;
+
+                        @include media(xl) {
+                            border-right: 0 !important;
+                        }
                     }
                 }
 
-                &:hover & {
-                    background: rgba($color-secondary-light,.8) !important;
+                .sorting,
+                .sorting_asc,
+                .sorting_desc {
+                    background-image: url(assets/icons/sort.svg);
+                    background-position: right 6px center;
+                    background-repeat: no-repeat;
+                    background-size: 0.7rem;
                 }
-            }
 
-            &.odd td,
-            &.even td {
+                .sorting_asc {
+                    background-image: url(assets/icons/sort_asc.svg);
+                    background-color: darken($color-bg-accents, 5%);
+                }
 
-                &.sorting_1 {
-                    background: rgba($color-bg-mint,.1) !important;
+                .sorting_desc {
+                    background-image: url(assets/icons/sort_desc.svg);
+                    background-color: darken($color-bg-accents, 5%);
                 }
             }
         }
-    }
 
-    thead tr,
-    tbody tr {
-        display: grid;
-        width: 100%;
-        grid-auto-flow: column dense;
-        grid-template-rows: repeat(13, 1fr);
-        grid-auto-columns: minmax(130px, auto);
+        tbody {
+            grid-area: body;
+            display: grid;
+            grid-auto-flow: column;
+            overflow-x: scroll;
+            @include box-shadow(0, 2px, 6px, rgba(0,0,0,.08));
+            background: rgba($color-primary-light,.95) !important;
+            @include rounded();
+            margin: 0;
+            overflow-y: hidden;
 
+            @include media(xl) {
+                margin: .5rem 0;
+                grid-auto-flow: row;
+                overflow-x: hidden;
+            }
 
-        @include media(xl) {
-            grid-auto-flow: row dense;
-            grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
-            grid-template-rows: auto;
+            tr {
+                background: transparent !important;
+
+                td {
+                    border: 1px solid darken($color-secondary-light, 5%) !important;
+                    border-width: 0 0 1px 1px !important;
+                    font-size: .8rem;
+
+                    @include media(xl) {
+                        border-width: 1px 1px 0 0 !important;
+                    }
+
+                    &.checked,
+                    &.unchecked,
+                    &:last-child {
+                        text-indent: -9999px;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        background: url(assets/icons/check.svg) center center no-repeat;
+                        background-size: 1rem;
+                    }
+
+                    &.unchecked {
+                        background-image: url(assets/icons/uncheck.svg);
+                    }
+                }
+
+                &.odd td,
+                &.even td {
+
+                    &.sorting_1 {
+                        background-color: rgba($color-bg-mint,.1) !important;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba($color-secondary-light,.8) !important;
+                }
+            }
         }
-    }
 
-    th,
-    td {
-        padding: .8rem !important;
-        font-size: 0.8em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        text-align: left;
-        box-sizing: content-box;
-        transition: 250ms;
+        thead tr,
+        tbody tr {
+            display: grid;
+            width: 100%;
+            grid-auto-flow: column dense;
+            grid-template-rows: repeat(13, 1fr);
+            grid-auto-columns: minmax(130px, auto);
 
-        @include media(xl) {
-            text-align: center;
 
-            &:nth-child(1),
-            &:nth-child(2),
-            &:nth-child(5),
-            &:nth-child(7) {
-                text-align: left;
+            @include media(xl) {
+                grid-auto-flow: row dense;
+                grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr) minmax(50px, 1fr);
+                grid-template-rows: auto;
+            }
+        }
+
+        tbody tr {
+            @include media(md-max) {
+                grid-auto-columns: minmax(120px, auto);
+            }
+        }
+
+        th,
+        td {
+            padding: .8rem !important;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: left;
+            box-sizing: content-box;
+            transition: 250ms;
+
+            &:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            @include media(xl) {
+                text-align: center;
+
+                &:nth-child(1),
+                &:nth-child(2),
+                &:nth-child(5),
+                &:nth-child(7) {
+                    text-align: left;
+                }
             }
         }
     }

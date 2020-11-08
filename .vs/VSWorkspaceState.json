@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\data",
     "\\src",
     "\\src\\assets",
     "\\src\\assets\\icons",
     "\\src\\js",
     "\\src\\scss",
     "\\src\\scss\\base",
+    "\\src\\scss\\components",
     "\\src\\scss\\elements",
     "\\src\\scss\\pages"
   ],
-  "SelectedNode": "\\src\\assets\\icons\\arrow_next.svg",
+  "SelectedNode": "\\src\\scss\\components\\mainTable.scss",
   "PreviewInSolutionExplorer": false
 }
