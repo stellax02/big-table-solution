@@ -1,5 +1,5 @@
 var table = $('#dataFilter').DataTable({
-    "ajax": "./data/company.txt",
+    "ajax": "https://raw.githubusercontent.com/stellax02/zadatak/master/data/company.txt",
     "pageLength": 25,
     "lengthMenu": [25, 50, 100],
     fixedColumns: {
