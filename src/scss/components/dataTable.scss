@@ -12,11 +12,18 @@
         }
 
         select[name="dataFilter_length"] {
+            position: relative;
             border: none;
             border-bottom: 2px solid $color-txt-primary;
             @include rounded(0);
             outline: none;
             height: 35px;
+            width: 45px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent url(assets/icons/arrow_down.svg) right center no-repeat;
+            background-size: .6rem;
         }
 
         @include media(sm) {
@@ -207,7 +214,6 @@
             transition: left 0.5s;
 
             @include media(xl) {
-                height: 100%;
                 opacity: 1;
                 max-height: 0;
                 overflow: hidden;
@@ -223,7 +229,7 @@
 
             .datalist-filter {
                 outline: none !important;
-                padding: 3px;
+                padding: 3px 20px 3px 5px;
                 margin: .333rem;
                 height: 28px;
                 opacity: 0;
@@ -231,6 +237,11 @@
                 border: 1px solid $color-bg-mint;
                 background-color: $color-primary-light;
                 transition: border 250ms, opacity 250ms;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                background: transparent url(assets/icons/arrow_down.svg) right 6px center no-repeat;
+                background-size: .5rem;
 
                 @include media(xl) {
                     margin: 15px;

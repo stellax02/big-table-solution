@@ -7,10 +7,10 @@
     "\\src\\js",
     "\\src\\scss",
     "\\src\\scss\\base",
-    "\\src\\scss\\components",
     "\\src\\scss\\elements",
+    "\\src\\scss\\layout",
     "\\src\\scss\\pages"
   ],
-  "SelectedNode": "\\src\\scss\\components\\mainTable.scss",
+  "SelectedNode": "\\src\\scss\\components\\dataTable.scss",
   "PreviewInSolutionExplorer": false
 }
